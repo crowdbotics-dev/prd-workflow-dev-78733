@@ -1,263 +1,335 @@
 import React from "react";
-import { Text, StyleSheet, View, Image, ScrollView, TextInput } from "react-native";
+import { Image, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 
-const GroupChatScreen = (params) => {
+const DirectMessageForGroupChat = () => {
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.header}>
-        <Image source={require(
-          // @ts-ignore
-          "./assets/back.png")} style={styles.back} />
-        <Text style={styles.heading}>Group chat</Text>
-        <Text style={styles.saveText}>Save</Text>
+
+    <View style={styles.container}>
+      <ScrollView>
+      <View style={styles.chatHeader}>
+          <View style={styles.groupName}>
+            <Image source={require(
+              // @ts-ignore
+              "./assets/back.png")}/>
+            <View style={styles.logoContainer}>
+            <Image source={require(
+              // @ts-ignore
+              "./assets/logo.png")}/>
+            </View>
+            <Text style={styles.headerName}>Group name</Text>
+          </View>
+          <View style={styles.icons}>
+            <Image source={require(
+              // @ts-ignore
+              "./assets/call.png")}/>
+              <Image style={styles.cameraIcon} source={require(
+                // @ts-ignore
+                "./assets/camera.png")}/>
+          </View>
       </View>
-      <View style={styles.centerSection}>
-        <View style={styles.imgContainer2}>
-          <Image source={require(
+      <View style={styles.mt30}>
+      <View style={styles.sendMessage}>
+         <View style={styles.messageBox}>
+            <View style={styles.sendMessageBox}>
+                  <Text>Lorem ipsum dolor sit amet.</Text>
+            </View>
+            <Text style={styles.timeText}>01:15 PM</Text>
+          </View>
+          <View style={styles.userBox}>
+            <Image style={styles.logoChatIcon} source={require(
+              // @ts-ignore
+              "./assets/logo.png")}/>
+            <Image style={styles.onlineIcon} source={require(
+              // @ts-ignore
+              "./assets/Oval.png")}/>
+          </View>
+      </View>
+      </View>
+      <View style={styles.receiveMessage}>
+          <View style={styles.userBoxGray}>
+            <Image style={styles.logoChatIcon} source={require(
+              // @ts-ignore
+              "./assets/logo.png")}/>
+            <Image style={styles.onlineIcon} source={require(
+              // @ts-ignore
+              "./assets/Oval.png")}/>
+          </View>
+        <View style={styles.messageBox}>
+          <View style={styles.receiveMessageBox}>
+                <Text>Lorem ipsum dolor sit amet.</Text>
+          </View>
+          <Text style={styles.timeText}>01:15 PM</Text>
+        </View>
+      </View>
+      <View style={styles.sendMessage}>
+         <View style={styles.messageBox}>
+            <View style={styles.sendMessageBox}>
+                  <Text>Lorem ipsum dolor sit amet.</Text>
+            </View>
+            <Text style={styles.timeText}>01:15 PM</Text>
+          </View>
+          <View style={styles.userBox}>
+            <Image style={styles.logoChatIcon} source={require(
+              // @ts-ignore
+              "./assets/logo.png")}/>
+            <Image style={styles.onlineIcon} source={require(
+              // @ts-ignore
+              "./assets/Oval.png")}/>
+          </View>
+      </View>
+      <View style={styles.sendMessage}>
+         <View style={styles.messageBox}>
+            <View style={styles.sendMessageBox}>
+                  <Text>Lorem ipsum dolor sit amet.</Text>
+            </View>
+            <Text style={styles.timeText}>01:15 PM</Text>
+          </View>
+          <View style={styles.userBox}>
+            <Image style={styles.logoChatIcon} source={require(
+              // @ts-ignore
+              "./assets/logo.png")}/>
+            <Image style={styles.onlineIcon} source={require(
+              // @ts-ignore
+              "./assets/Oval.png")}/>
+          </View>
+      </View>
+      <View style={styles.receiveMessage}>
+          <View style={styles.userBoxGray}>
+            <Image style={styles.logoChatIcon} source={require(
+              // @ts-ignore
+              "./assets/logo.png")}/>
+            <Image style={styles.onlineIcon} source={require(
+              // @ts-ignore
+              "./assets/Oval.png")}/>
+          </View>
+        <View style={styles.messageBox}>
+          <View style={styles.receiveMessageBox}>
+                <Text>Lorem ipsum dolor sit amet.</Text>
+          </View>
+          <Text style={styles.timeText}>01:15 PM</Text>
+        </View>
+      </View>
+
+      <View style={styles.chatSection}>
+          <View style={styles.center}>
+            <Image source={require(
+              // @ts-ignore
+              "./assets/cam.png")}/>
+            <View style={styles.circle}></View>
+          </View>
+          <View style={styles.inputIcons}>
+            <Input placeholder="Enter"/>
+            <Image style={styles.smileyIcon} source={require(
+              // @ts-ignore
+              "./assets/smiley.png")}/>
+            <Image source={require(
+              // @ts-ignore
+              "./assets/mic.png")}/>
+          </View>
+          <Image style={styles.sendIcon} source={require(
             // @ts-ignore
-            "./assets/edit.png")} style={styles.editImg} />
-        </View>
-        <Image source={require(
-          // @ts-ignore
-          "./assets/plus.png")} style={styles.heartImg} />
+            "./assets/send.png")}/>
       </View>
-      <View style={styles.tabView}>
-        <View style={styles.tabItem}>
-          <Text style={[styles.tabText, styles.selectedTab]}>Create Group</Text>
-        </View>
-        <View style={[styles.tabItem]}>
-          <Text style={styles.tabText}>Leave Group</Text>
-        </View>
-        <View style={styles.tabItem}>
-          <Text style={styles.tabText}>Conversation</Text>
-        </View>
-      </View>
-
-      <Text style={styles.mr10}>Name of the group</Text>
-      <View style={styles.InputBox}>
-        <TextInput placeholder="Enter" placeholderTextColor={"#000"} />
-      </View>
-      <Text style={styles.mr10}>Group Description</Text>
-      <View style={styles.textInput}>
-        <Input placeholder="Enter" multiline={true} />
-      </View>
-      <Text style={styles.mr10}>Add / Remove</Text>
-      <View style={styles.chooseContainer}>
-        <TextInput placeholder="Enter" placeholderTextColor={"#000"}></TextInput>
-        <Image source={require(
-          // @ts-ignore
-          "./assets/search.png")} style={styles.filterImg} />
-      </View>
-      <View style={styles.walletCard}>
-        <View style={styles.walletInner}>
-          <View style={styles.imgContainer}>
-            <Image source={require("./assets/edit.png")} style={styles.editImage} />
-          </View>
-
-          <View style={styles.walletCarder}>
-            <Text style={styles.eventName}>Cody Fisher</Text>
-          </View>
-        </View>
-        <View style={styles.leftSection}>
-        <Image source={require(
-          // @ts-ignore
-          "./assets/box.png")} style={styles.dotsImg} />
-        </View>
-      </View>
-      <View style={styles.walletCard}>
-        <View style={styles.walletInner}>
-          <View style={[styles.imgContainer, styles.backColor]}>
-            <Image source={require("./assets/edit.png")} style={styles.editImage} />
-          </View>
-
-          <View style={styles.walletCarder}>
-            <Text style={styles.eventName}>Cody Fisher</Text>
-          </View>
-        </View>
-        <View style={styles.leftSection}>
-        <Image source={require(
-          // @ts-ignore
-          "./assets/checkbox.png")} style={styles.dotsImg} />
-        </View>
-      </View>
-      <View style={styles.walletCard}>
-        <View style={styles.walletInner}>
-          <View style={styles.imgContainer}>
-            <Image source={require("./assets/edit.png")} style={styles.editImage} />
-          </View>
-
-          <View style={styles.walletCarder}>
-            <Text style={styles.eventName}>Cody Fisher</Text>
-          </View>
-        </View>
-        <View style={styles.leftSection}>
-        <Image source={require(
-          // @ts-ignore
-          "./assets/box.png")} style={styles.dotsImg} />
-        </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    paddingHorizontal: 10,
-    backgroundColor: "#FFF",
-    paddingBottom: 20
+    backgroundColor: "white",
+    display: "flex",
+    paddingVertical: 20,
+    height: "100%"
   },
-  header: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginHorizontal: 30,
-    marginTop: 15,
-    marginBottom: 30
-  },
-  back: { width: 11.25, height: 20, resizeMode: "contain", marginLeft: -15 },
-  heading: { fontSize: 16, color: "#000", marginLeft: 15 },
-  mr10: {
-    marginLeft: 25,
-    marginBottom: 10
-  },
-  saveText: { textDecorationLine: "underline", fontSize: 16, marginRight: -10 },
-  centerSection: { justifyContent: "center", alignItems: "center" },
-  imgContainer2: {
-    height: 98,
-    width: 97,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#DADADA",
-    borderRadius: 60
-  },
-  editImg: { resizeMode: "contain", height: 32, width: 32 },
-  heartImg: { resizeMode: "contain", height: 17, width: 17, marginTop: -10, marginLeft: 70 },
-  tabView: {
-    height: 48,
+  chatHeader: {
+    height: 106,
     backgroundColor: "#F1F1F1",
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
-    borderRadius: 10,
-    paddingVertical: 6,
-    marginVertical: 20,
-    marginHorizontal: 5
-  },
-  tabItem: {
-    height: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#F1F1F1",
-    borderRadius: 10,
-    flex: 1
-  },
-  selectedTab: {
-    backgroundColor: "#FFF",
-    shadowColor: "gray",
-    elevation: 10,
-    paddingVertical: 10,
-    borderRadius: 10,
-    color: "#000",
-    paddingHorizontal: 15
-  },
-  tabText: { fontSize: 12, color: "#7C7C7C" },
-  InputBox: { paddingHorizontal: 10, borderColor: "#C4C4C4", borderWidth: 1, marginHorizontal: 5, borderRadius: 10, marginBottom: 10 },
-  textInput: { borderWidth: 1, borderRadius: 10, borderColor: "#C4C4C4", paddingHorizontal: 5, height: 140, marginHorizontal: 5, marginBottom: 10 },
-  chooseContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    height: 55,
-    borderColor: "#C4C4C4",
-    borderWidth: 1,
-    borderRadius: 10,
-    paddingLeft: 10,
-    paddingRight: 20,
-    marginHorizontal: 5,
-    marginBottom: 20
-  },
-  filterImg: {
-    height: 14,
-    width: 14,
-    resizeMode: "contain"
-  },
-  walletCard: {
-    backgroundColor: "#fff",
-    padding: 10,
-    paddingBottom: 5,
     display: "flex",
     flexDirection: "row",
-    alignItems: "center",
     justifyContent: "space-between",
-    borderRadius: 8,
-    borderBottomColor: "#DADADA",
-    borderBottomWidth: 1,
-    marginTop: 5
+    alignItems: "center",
+    paddingHorizontal: 25
   },
-  walletInner: {
+  groupName: {
     display: "flex",
+    flexDirection: "row",
+    alignItems: "center"
+  },
+  logoChatIcon: {
+    height: 32,
+    width: 32
+  },
+  cameraIcon: {
+    marginLeft: 10
+  },
+  onlineIcon: {
+    position: "absolute",
+    right: -5,
+    bottom: 10,
+    borderWidth: 2,
+    borderColor: "#FFFFFF",
+    borderRadius: 100 / 2
+  },
+  logoContainer: {
+    width: 35,
+    height: 35,
+    backgroundColor: "#F9D8D9",
+    borderRadius: 100 / 2,
+    marginLeft: 35,
+    justifyContent: "center",
+    alignContent: "center",
+    alignItems: "center",
     flexDirection: "row"
   },
-  walletCarder: {
-    alignSelf: "center",
+  headerName: {
+    fontSize: 14,
+    color: "#000000",
+    marginLeft: 17
+  },
+  icons: {
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "row",
+    alignItems: "center"
   },
-  eventName: {
-    color: "#1E2022",
-    fontSize: 15,
-    marginLeft: 10,
-    width: 115
+  smileyIcon: {
+    marginRight: 6
   },
-
-  leftSection: { justifyContent: "center", alignItems: "center", paddingRight: 10 },
-  imgContainer: {
-    height: 61,
+  sendIcon: {
+    marginLeft: 25
+  },
+  mt30: {
+    marginTop: 30
+  },
+  sendMessage: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    marginLeft: 45,
+    marginRight: 16
+  },
+  messageBox: {
+    display: "flex",
+    flexDirection: "column",
+    marginTop: 20
+  },
+  sendMessageBox: {
+    width: 254,
+    height: 84,
+    backgroundColor: "#FCF1D6",
+    borderRadius: 10,
+    padding: 20
+  },
+  userBox: {
     width: 61,
+    height: 61,
+    backgroundColor: "#FCF1D6",
+    borderRadius: 100 / 2,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#DADADA",
-    borderRadius: 30
+    flexDirection: "row",
+    marginLeft: 20
   },
-  editImage: { resizeMode: "contain", height: 32, width: 32 },
-  dotsImg: { resizeMode: "contain", height: 18, width: 18 },
-  backColor: { backgroundColor: "#FCF1D6" }
+  userBoxGray: {
+    width: 61,
+    height: 61,
+    backgroundColor: "#DADADA",
+    borderRadius: 100 / 2,
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+    marginLeft: 20
+  },
+  receiveMessage: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center"
+  },
+  receiveMessageBox: {
+    width: 254,
+    height: 46,
+    backgroundColor: "#DADADA",
+    borderRadius: 10,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    marginLeft: 13
+  },
+  timeText: {
+    fontSize: 12,
+    color: "#C6C6C6",
+    fontWeight: "600",
+    textAlign: "right",
+    paddingTop: 2
+  },
+  chatSection: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 25,
+    paddingTop: 30
+  },
+  circle: {
+    height: 8,
+    width: 8,
+    borderWidth: 2,
+    borderColor: "#AEB5C0",
+    position: "absolute",
+    right: 5,
+    left: 6,
+    top: 6,
+    bottom: 5,
+    borderRadius: 100 / 2
+  },
+  center: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  inputIcons: {
+    width: 255,
+    backgroundColor: "#F1F1F1",
+    borderRadius: 10,
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginLeft: 10,
+    paddingHorizontal: 6
+  }
 });
 
 const Input = (props) => {
   return (
-    <View style={styles.container}>
+    <View>
       <TextInput
-        style={inputStyles.input}
+        style={textStyles.input}
         placeholder={props.placeholder}
         value={props.value}
         onChangeText={(num) => props.setValue(num)}
-        placeholderTextColor='#000'
-        multiline={props.multiline}
-        numberOfLines={props.multiline ? 10 : null}
+        placeholderTextColor='#000000'
         editable={props.editable !== false}
-        borderWidth={props.borderWidth}
       />
+      {props.errorText ? <Text style={textStyles.error}>{props.errorText}</Text> : null}
     </View>
   );
 };
 
-const inputStyles = StyleSheet.create({
-  container: {
-    width: "100%",
-    borderRadius: 10,
-    paddingRight: 10
-  },
+const textStyles = StyleSheet.create({
   input: {
-    backgroundColor: "#fff",
-    height: 53,
-    borderColor: "#C4C4C4",
+    backgroundColor: "#F1F1F1",
+    height: 40,
     color: "#000",
-    borderRadius: 10,
-    fontSize: 14
+    fontSize: 14,
+    paddingHorizontal: 10,
+    width: 200,
+    borderRadius: 10
+  },
+  error: {
+    fontSize: 13,
+    color: "#FA060D",
+    paddingTop: 8
   }
-
 });
 
-export default GroupChatScreen;
+export default DirectMessageForGroupChat;

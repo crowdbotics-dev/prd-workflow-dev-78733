@@ -1,5 +1,5 @@
 {
-    "name": "@screens/group-chat",
+    "name": "@screens/direct-message-group-chat",
     "version": "1.0.0",
     "description": "",
     "private": true,
