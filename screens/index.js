@@ -1,125 +1,141 @@
-import React from "react";
-import { Text, View, StyleSheet, TouchableHighlight, TextInput } from "react-native";
+import React, { useState } from "react";
+import {
+  Text,
+  StyleSheet,
+  View,
+  Image,
+  TextInput,
+  Pressable
+} from "react-native";
 
-const SupportSendFeedbackScreen = () => {
+const RateTheAppScreen = (params) => {
+  const [review, setReview] = useState("");
   return (
     <View style={styles.container}>
-      <View>
-        <Text style={styles.labelText}>
-          Email address
+      <View style={styles.header}>
+        <Text style={styles.heading}>How was your experience?</Text>
+        <Text style={styles.subhHeading}>
+          Use 5 star rating to rate an app or leave a text review.
         </Text>
-        <Input
-          placeholder='Enter'
+      </View>
+      <Image
+        source={require("./assets/5starsImage.png")}
+        style={styles.image}
+      />
+      <Image
+        source={require("./assets/separator.png")}
+        style={styles.separator}
+      />
+      <View style={styles.inputContainer}>
+        <Text style={styles.inputText}>Text review</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={(text) => setReview(text)}
+          value={review}
+          placeholder="Enter"
+          placeholderTextColor="#9B9B9B"
+          autoCapitalize="none"
+          autoCorrect={false}
         />
       </View>
-      <View style={styles.Textarea}>
-        <Text style={styles.labelText}>
-          Message
-        </Text>
-        <TextInput style={styles.TextAreaInput}
-          numberOfLines={5}
-          multiline={true}
-          placeholder='Enter'
-          placeholderTextColor='#ddd'
-        />
-      </View>
-
-      <View style={styles.SubmitBtn}>
-        <Button>Submit</Button>
-      </View>
+      <Button buttonText={"Submit"} />
+      <Button buttonText={"Cancel"} outline={true} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
     flex: 1,
-    height: "100%",
-    backgroundColor: "white"
+    backgroundColor: "#fff",
+    justifyContent: "center"
   },
-  labelText: {
-    fontSize: 14,
-    fontWeight: "400",
-    marginBottom: 10,
-    marginLeft: 15
-  },
-  Textarea: {
-    marginTop: 30
-  },
-  TextAreaInput: {
-    height: 160,
-    borderWidth: 1,
-    borderColor: "#C4C4C4",
-    borderRadius: 10,
-    textAlignVertical: "top",
-    padding: 10
-  },
-  SubmitBtn: {
-    marginTop: 100
-  }
-});
-
-export default SupportSendFeedbackScreen;
-
-const Button = (props) => {
-  return (
-    <TouchableHighlight onPress={props.onPress} underlayColor='#DDDDDD'>
-      <View style={[btnStyles.button, {
-        backgroundColor: props.backgroundColor ? props.backgroundColor : "#000000",
-        height: props.height ? props.height : 49,
-        borderWidth: props.borderWidth ? props.borderWidth : 0,
-        borderColor: props.borderColor ? props.borderColor : "#000000"
-      }]}>
-        <Text style={[btnStyles.text, { color: props.color ? props.color : "#ffffff" }]}>{props.children}</Text>
-      </View>
-    </TouchableHighlight>
-  );
-};
-
-const btnStyles = StyleSheet.create({
-  button: {
-    display: "flex",
+  header: {
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 10
+    paddingHorizontal: 50
   },
-  text: {
+  heading: {
+    fontSize: 24,
+    fontWeight: "bold"
+  },
+  subhHeading: {
+    fontSize: 15,
+    lineHeight: 20,
+    marginTop: 10,
     fontWeight: "bold",
-    fontSize: 15
+    textAlign: "center"
+  },
+  image: {
+    alignSelf: "center"
+  },
+  separator: {
+    alignSelf: "center",
+    marginVertical: 30
+  },
+  inputContainer: {
+    flexDirection: "column",
+    justifyContent: "center",
+    marginHorizontal: 20
+  },
+  inputText: {
+    fontSize: 16,
+    marginLeft: 20,
+    color: "#111112"
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: "#e6e6e6",
+    borderRadius: 10,
+    padding: 10,
+    paddingLeft: 20,
+    marginVertical: 10,
+    width: "100%",
+    height: 150
   }
 });
+export default RateTheAppScreen;
 
-const Input = (props) => {
+const Button = ({ onPress, buttonText, outline }) => {
+  const btnStyle = {
+    backgroundColor: outline ? "#fff" : "#000",
+    borderColor: outline ? "#000" : "#fff",
+    borderWidth: 1
+  };
+  const btnText = {
+    color: outline ? "#000" : "#fff"
+  };
   return (
-    <View>
-      <TextInput
-        style={textStyles.input}
-        placeholder={props.placeholder}
-        value={props.value}
-        onChangeText={(num) => props.setValue(num)}
-        placeholderTextColor='#ddd'
-        editable={props.editable !== false}
-      />
-      {props.errorText ? <Text style={textStyles.error}>{props.errorText}</Text> : null}
+    <View style={buttonStyles.btnContainer}>
+      <Pressable style={[buttonStyles.btn, btnStyle]} onPress={onPress}>
+        <Text style={[buttonStyles.btnText, btnText]}>{buttonText}</Text>
+      </Pressable>
     </View>
   );
 };
 
-const textStyles = StyleSheet.create({
-  input: {
-    backgroundColor: "#fff",
-    height: 53,
-    borderColor: "#C4C4C4",
-    color: "#000",
-    borderRadius: 10,
-    fontSize: 14,
-    borderWidth: 1,
-    paddingHorizontal: 10
+const buttonStyles = StyleSheet.create({
+  btnContainer: {
+    paddingTop: 10,
+    paddingHorizontal: 40,
+    justifyContent: "center",
+    marginTop: 20
   },
-  error: {
-    fontSize: 13,
-    color: "#FA060D",
-    paddingTop: 8
+  btn: {
+    backgroundColor: "black",
+    height: 50,
+    width: "100%",
+    padding: 10,
+    paddingHorizontal: 25,
+    borderRadius: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    shadowColor: "rgba(0, 0, 0, 0.2)",
+    elevation: 10
+  },
+  btnText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold"
   }
 });
