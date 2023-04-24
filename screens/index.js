@@ -1,335 +1,286 @@
-import React from "react";
-import { Image, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import React, { useState, useEffect } from "react";
+import {
+  Text,
+  StyleSheet,
+  View,
+  Image,
+  ScrollView,
+  TextInput
+} from "react-native";
 
-const DirectMessageForGroupChat = () => {
+const DirectMessagesScreen = (params) => {
+  const [message, setMessage] = useState("");
+  const [user1, setUser1] = useState({});
+  const [user2, setUser2] = useState({});
+  const [conversation, setConversation] = useState([]);
+  useEffect(() => {
+    setUser1({
+      name: "User1",
+      image: require("./assets/profile1.png"),
+      isOnline: true
+    });
+    setUser2({
+      name: "Username",
+      image: require("./assets/profile2.png"),
+      isOnline: true
+    });
+  }, []);
+  useEffect(() => {
+    setConversation([
+      {
+        id: 1,
+        sender: user1,
+        text: "lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+        sentTime: "12:00 PM"
+      },
+      {
+        id: 2,
+        sender: user2,
+        text: "lorem ipsum dolor sit amet",
+        sentTime: "01:15 PM"
+      },
+      {
+        id: 3,
+        sender: user2,
+        text: "lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+        sentTime: "01:15 PM"
+      },
+      {
+        id: 4,
+        sender: user1,
+        text: "lorem ipsum dolor sit amet",
+        sentTime: "01:15 PM"
+      },
+      {
+        id: 5,
+        sender: user2,
+        text: "lorem ipsum dolor sit amet",
+        sentTime: "01:15 PM"
+      },
+      {
+        id: 6,
+        sender: user1,
+        text: "lorem ipsum dolor sit amet",
+        sentTime: "01:15 PM"
+      }
+    ]);
+  }, [user1, user2]);
   return (
-
     <View style={styles.container}>
-      <ScrollView>
-      <View style={styles.chatHeader}>
-          <View style={styles.groupName}>
-            <Image source={require(
-              // @ts-ignore
-              "./assets/back.png")}/>
-            <View style={styles.logoContainer}>
-            <Image source={require(
-              // @ts-ignore
-              "./assets/logo.png")}/>
-            </View>
-            <Text style={styles.headerName}>Group name</Text>
-          </View>
-          <View style={styles.icons}>
-            <Image source={require(
-              // @ts-ignore
-              "./assets/call.png")}/>
-              <Image style={styles.cameraIcon} source={require(
-                // @ts-ignore
-                "./assets/camera.png")}/>
-          </View>
-      </View>
-      <View style={styles.mt30}>
-      <View style={styles.sendMessage}>
-         <View style={styles.messageBox}>
-            <View style={styles.sendMessageBox}>
-                  <Text>Lorem ipsum dolor sit amet.</Text>
-            </View>
-            <Text style={styles.timeText}>01:15 PM</Text>
-          </View>
-          <View style={styles.userBox}>
-            <Image style={styles.logoChatIcon} source={require(
-              // @ts-ignore
-              "./assets/logo.png")}/>
-            <Image style={styles.onlineIcon} source={require(
-              // @ts-ignore
-              "./assets/Oval.png")}/>
-          </View>
-      </View>
-      </View>
-      <View style={styles.receiveMessage}>
-          <View style={styles.userBoxGray}>
-            <Image style={styles.logoChatIcon} source={require(
-              // @ts-ignore
-              "./assets/logo.png")}/>
-            <Image style={styles.onlineIcon} source={require(
-              // @ts-ignore
-              "./assets/Oval.png")}/>
-          </View>
-        <View style={styles.messageBox}>
-          <View style={styles.receiveMessageBox}>
-                <Text>Lorem ipsum dolor sit amet.</Text>
-          </View>
-          <Text style={styles.timeText}>01:15 PM</Text>
+      <View style={styles.header}>
+        <View style={styles.headerImage}>
+          <Image source={user2.image} style={styles.headerImage} />
+          {(user2.isOnline && (
+            <Image
+              source={require("./assets/onlineIcon.png")}
+              style={styles.activityIconHeader}
+            />
+          )) ||
+            null}
+        </View>
+        <View style={styles.profileName}>
+          <Text style={styles.profileNameText}>{user2.name}</Text>
+        </View>
+        <View style={styles.icons}>
+          <Image source={require("./assets/phoneIcon.png")} />
+          <Image source={require("./assets/videoIcon.png")} />
         </View>
       </View>
-      <View style={styles.sendMessage}>
-         <View style={styles.messageBox}>
-            <View style={styles.sendMessageBox}>
-                  <Text>Lorem ipsum dolor sit amet.</Text>
-            </View>
-            <Text style={styles.timeText}>01:15 PM</Text>
-          </View>
-          <View style={styles.userBox}>
-            <Image style={styles.logoChatIcon} source={require(
-              // @ts-ignore
-              "./assets/logo.png")}/>
-            <Image style={styles.onlineIcon} source={require(
-              // @ts-ignore
-              "./assets/Oval.png")}/>
-          </View>
-      </View>
-      <View style={styles.sendMessage}>
-         <View style={styles.messageBox}>
-            <View style={styles.sendMessageBox}>
-                  <Text>Lorem ipsum dolor sit amet.</Text>
-            </View>
-            <Text style={styles.timeText}>01:15 PM</Text>
-          </View>
-          <View style={styles.userBox}>
-            <Image style={styles.logoChatIcon} source={require(
-              // @ts-ignore
-              "./assets/logo.png")}/>
-            <Image style={styles.onlineIcon} source={require(
-              // @ts-ignore
-              "./assets/Oval.png")}/>
-          </View>
-      </View>
-      <View style={styles.receiveMessage}>
-          <View style={styles.userBoxGray}>
-            <Image style={styles.logoChatIcon} source={require(
-              // @ts-ignore
-              "./assets/logo.png")}/>
-            <Image style={styles.onlineIcon} source={require(
-              // @ts-ignore
-              "./assets/Oval.png")}/>
-          </View>
-        <View style={styles.messageBox}>
-          <View style={styles.receiveMessageBox}>
-                <Text>Lorem ipsum dolor sit amet.</Text>
-          </View>
-          <Text style={styles.timeText}>01:15 PM</Text>
-        </View>
-      </View>
-
-      <View style={styles.chatSection}>
-          <View style={styles.center}>
-            <Image source={require(
-              // @ts-ignore
-              "./assets/cam.png")}/>
-            <View style={styles.circle}></View>
-          </View>
-          <View style={styles.inputIcons}>
-            <Input placeholder="Enter"/>
-            <Image style={styles.smileyIcon} source={require(
-              // @ts-ignore
-              "./assets/smiley.png")}/>
-            <Image source={require(
-              // @ts-ignore
-              "./assets/mic.png")}/>
-          </View>
-          <Image style={styles.sendIcon} source={require(
-            // @ts-ignore
-            "./assets/send.png")}/>
-      </View>
+      <ScrollView style={styles.body}>
+        {conversation.map((message, index) => (
+          <ConversationElement message={message} key={index} />
+        ))}
       </ScrollView>
+      <View style={styles.footer}>
+        <View style={styles.camera}>
+          <Image
+            source={require("./assets/cameraIcon.png")}
+            style={styles.cameraIcon}
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.input}
+            placeholder="Type a message"
+            onChangeText={(text) => setMessage(text)}
+            value={message}
+            autoCorrect={false}
+            autoCapitalize="none"
+            autoFocus={false}
+          />
+          <Image
+            source={require("./assets/emojiIcon.png")}
+            style={styles.smileyIcon}
+          />
+          <Image
+            source={require("./assets/voiceIcon.png")}
+            style={styles.voiceIcon}
+          />
+        </View>
+        <View style={styles.send}>
+          <Image
+            source={require("./assets/sendIcon.png")}
+            style={styles.sendIcon}
+          />
+        </View>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "white",
-    display: "flex",
-    paddingVertical: 20,
-    height: "100%"
+    flex: 1,
+    backgroundColor: "#fff"
   },
-  chatHeader: {
-    height: 106,
-    backgroundColor: "#F1F1F1",
-    display: "flex",
+  header: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingHorizontal: 25
-  },
-  groupName: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center"
-  },
-  logoChatIcon: {
-    height: 32,
-    width: 32
-  },
-  cameraIcon: {
-    marginLeft: 10
-  },
-  onlineIcon: {
-    position: "absolute",
-    right: -5,
-    bottom: 10,
-    borderWidth: 2,
-    borderColor: "#FFFFFF",
-    borderRadius: 100 / 2
-  },
-  logoContainer: {
-    width: 35,
-    height: 35,
-    backgroundColor: "#F9D8D9",
-    borderRadius: 100 / 2,
-    marginLeft: 35,
-    justifyContent: "center",
-    alignContent: "center",
-    alignItems: "center",
-    flexDirection: "row"
-  },
-  headerName: {
-    fontSize: 14,
-    color: "#000000",
-    marginLeft: 17
-  },
-  icons: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center"
-  },
-  smileyIcon: {
-    marginRight: 6
-  },
-  sendIcon: {
-    marginLeft: 25
-  },
-  mt30: {
-    marginTop: 30
-  },
-  sendMessage: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    marginLeft: 45,
-    marginRight: 16
-  },
-  messageBox: {
-    display: "flex",
-    flexDirection: "column",
-    marginTop: 20
-  },
-  sendMessageBox: {
-    width: 254,
-    height: 84,
-    backgroundColor: "#FCF1D6",
+    padding: 10,
+    marginHorizontal: 20,
+    backgroundColor: "#F1F1F1",
     borderRadius: 10,
-    padding: 20
+    height: 50
   },
-  userBox: {
-    width: 61,
-    height: 61,
-    backgroundColor: "#FCF1D6",
-    borderRadius: 100 / 2,
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "row",
-    marginLeft: 20
-  },
-  userBoxGray: {
-    width: 61,
-    height: 61,
-    backgroundColor: "#DADADA",
-    borderRadius: 100 / 2,
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "row",
-    marginLeft: 20
-  },
-  receiveMessage: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center"
-  },
-  receiveMessageBox: {
-    width: 254,
-    height: 46,
-    backgroundColor: "#DADADA",
-    borderRadius: 10,
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    marginLeft: 13
-  },
-  timeText: {
-    fontSize: 12,
-    color: "#C6C6C6",
-    fontWeight: "600",
-    textAlign: "right",
-    paddingTop: 2
-  },
-  chatSection: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    paddingHorizontal: 25,
-    paddingTop: 30
-  },
-  circle: {
-    height: 8,
-    width: 8,
-    borderWidth: 2,
-    borderColor: "#AEB5C0",
-    position: "absolute",
-    right: 5,
-    left: 6,
-    top: 6,
-    bottom: 5,
-    borderRadius: 100 / 2
-  },
-  center: {
-    display: "flex",
-    flexDirection: "row",
+  headerImage: {
+    flex: 1,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    resizeMode: "contain",
     alignItems: "center",
     justifyContent: "center"
   },
-  inputIcons: {
-    width: 255,
-    backgroundColor: "#F1F1F1",
-    borderRadius: 10,
-    display: "flex",
+  profileName: {
+    flex: 2
+  },
+  profileNameText: {
+    fontSize: 16
+  },
+  icons: {
+    flex: 1,
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "space-around"
+  },
+  activityIconHeader: {
+    width: 10,
+    height: 10,
+    resizeMode: "contain",
+    position: "absolute",
+    right: 20,
+    top: 25
+  },
+  body: {
+    flex: 1,
+    marginTop: 10
+  },
+  footer: {
+    flexDirection: "row",
     justifyContent: "space-between",
-    marginLeft: 10,
-    paddingHorizontal: 6
+    alignItems: "center",
+    padding: 10,
+    margin: 10
+  },
+  inputContainer: {
+    width: "80%"
+  },
+  input: {
+    paddingLeft: 15,
+    borderRadius: 10,
+    backgroundColor: "#F1F1F1"
+  },
+  smileyIcon: {
+    position: "absolute",
+    right: 40,
+    top: 10,
+    opacity: 0.5
+  },
+  voiceIcon: {
+    top: 14,
+    right: 15,
+    position: "absolute",
+    opacity: 0.5
   }
 });
+export default DirectMessagesScreen;
 
-const Input = (props) => {
+const ConversationElement = ({ message }) => {
+  const boxAlignment = {
+    flexDirection: message.sender.name === "User1" ? "row" : "row-reverse"
+  };
+  const messageTextContainer = {
+    marginLeft: message.sender.name === "User1" ? 20 : 0,
+    marginRight: message.sender.name === "User1" ? 0 : 20,
+    backgroundColor: message.sender.name === "User1" ? "#FCF1D6" : "#F9D8D9"
+  };
   return (
-    <View>
-      <TextInput
-        style={textStyles.input}
-        placeholder={props.placeholder}
-        value={props.value}
-        onChangeText={(num) => props.setValue(num)}
-        placeholderTextColor='#000000'
-        editable={props.editable !== false}
-      />
-      {props.errorText ? <Text style={textStyles.error}>{props.errorText}</Text> : null}
+    <View style={[ConversationElementStyles.messageContainer, boxAlignment]}>
+      <View style={ConversationElementStyles.profileImageContainer}>
+        <Image
+          source={message.sender.image}
+          style={ConversationElementStyles.profileImage}
+        />
+        {(message.sender.isOnline && (
+          <Image
+            source={require("./assets/onlineIcon.png")}
+            style={ConversationElementStyles.activityIcon}
+          />
+        )) ||
+          null}
+      </View>
+      <View
+        style={[
+          ConversationElementStyles.messageTextContainer,
+          messageTextContainer
+        ]}
+      >
+        <Text style={ConversationElementStyles.messageText}>
+          {message.text}
+        </Text>
+        <Text style={ConversationElementStyles.messageTime}>
+          {message.sentTime}
+        </Text>
+      </View>
     </View>
   );
 };
 
-const textStyles = StyleSheet.create({
-  input: {
-    backgroundColor: "#F1F1F1",
-    height: 40,
-    color: "#000",
-    fontSize: 14,
-    paddingHorizontal: 10,
-    width: 200,
-    borderRadius: 10
+const ConversationElementStyles = StyleSheet.create({
+  messageContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    margin: 10,
+    justifyContent: "flex-start",
+    marginVertical: 20
   },
-  error: {
-    fontSize: 13,
-    color: "#FA060D",
-    paddingTop: 8
+  messageTextContainer: {
+    minHeight: 70,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+    justifyContent: "center",
+    alignItems: "flex-start",
+    width: "70%"
+  },
+  messageText: {
+    lineHeight: 20,
+    fontSize: 14,
+    color: "#000",
+    fontWeight: "bold",
+    textAlign: "left"
+  },
+  activityIcon: {
+    position: "absolute",
+    right: 0,
+    top: 40
+  },
+  messageTime: {
+    position: "absolute",
+    right: 5,
+    bottom: -20,
+    color: "grey",
+    fontSize: 12
   }
 });
-
-export default DirectMessageForGroupChat;
