@@ -1,5 +1,5 @@
 {
-    "name": "@screens/chat-listing",
+    "name": "@screens/group-chat",
     "version": "1.0.0",
     "description": "",
     "private": true,
